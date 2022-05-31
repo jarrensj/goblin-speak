@@ -1,9 +1,11 @@
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
   width: 100%;
+  padding: 24px 0;
 }
 
 .container main {
@@ -11,6 +13,18 @@
   text-align: center;
 }
 
+.container h1,
+.footer p {
+  margin: 0;
+}
+
 .translatedText {
   overflow-wrap: anywhere;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
 }
