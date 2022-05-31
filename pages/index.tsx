@@ -19,55 +19,81 @@ const Home: NextPage = () => {
   const IMAGE = "/goblin-9871.png";
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>{TITLE}</title>
-        <meta
-          name="description"
-          content="goblintown.wtf inspired translator for hoomans to gooblins"
-        />
-        <link rel="icon" href="/favicon.ico" />
+    <>
+      <div className={styles.container}>
+        <Head>
+          <title>{TITLE}</title>
+          <meta
+            name="description"
+            content="goblintown.wtf inspired translator for hoomans to gooblins"
+          />
+          <link rel="icon" href="/favicon.ico" />
 
-        <meta name="title" content={TITLE} />
-        <meta name="description" content={DESCRIPTION} />
+          <meta name="title" content={TITLE} />
+          <meta name="description" content={DESCRIPTION} />
 
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={URL} />
-        <meta property="og:title" content={TITLE} />
-        <meta property="og:description" content={DESCRIPTION} />
-        <meta property="og:image" content={IMAGE} />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={URL} />
+          <meta property="og:title" content={TITLE} />
+          <meta property="og:description" content={DESCRIPTION} />
+          <meta property="og:image" content={IMAGE} />
 
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={URL} />
-        <meta property="twitter:title" content={TITLE} />
-        <meta property="twitter:description" content={DESCRIPTION} />
-        <meta property="twitter:image" content={IMAGE}></meta>
-      </Head>
+          <meta property="twitter:card" content="summary_large_image" />
+          <meta property="twitter:url" content={URL} />
+          <meta property="twitter:title" content={TITLE} />
+          <meta property="twitter:description" content={DESCRIPTION} />
+          <meta property="twitter:image" content={IMAGE}></meta>
+        </Head>
 
-      <main>
         <h1>{normalTextToGoblinText("goblin translator")}</h1>
-        <p>
-          {normalTextToGoblinText(
-            "ay you a hooman want to speak with us gooblins??"
-          )}
-        </p>
 
-        <textarea
-          style={{
-            fontFamily: "'Open Sans', sans-serif",
-          }}
-          name=""
-          id=""
-          cols={30}
-          rows={5}
-          onChange={(e) => {
-            setInput(e.target.value);
-          }}
-        ></textarea>
+        <main>
+          <div>
+            <p>
+              {normalTextToGoblinText(
+                "ay you a hooman want to speak with us gooblins??"
+              )}
+            </p>
 
-        <p className={styles.translatedText}>{translatedText}</p>
-      </main>
-    </div>
+            <textarea
+              style={{
+                fontFamily: "'Open Sans', sans-serif",
+              }}
+              name=""
+              id=""
+              cols={30}
+              rows={5}
+              onChange={(e) => {
+                setInput(e.target.value);
+              }}
+            ></textarea>
+
+            <p className={styles.translatedText}>{translatedText}</p>
+          </div>
+        </main>
+
+        <footer className={styles.footer}>
+          <p>
+            Built by{" "}
+            <a
+              href="https://twitter.com/jarrensj"
+              target="_blank"
+              rel="noreferrer"
+            >
+              goblin #8723
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://twitter.com/johnphamous"
+              target="_blank"
+              rel="noreferrer"
+            >
+              goblin #9871
+            </a>
+          </p>
+        </footer>
+      </div>
+    </>
   );
 };
 
