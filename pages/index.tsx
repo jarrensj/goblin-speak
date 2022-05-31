@@ -1,9 +1,16 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { useMemo, useState } from "react";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
+  const [input, setInput] = useState("");
+
+  const translatedText = useMemo(() => {
+    return normalTextToGoblinText(input);
+  }, [input]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -12,61 +19,118 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <main>
+        <h1>goblin translator</h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
+        <textarea
+          style={{
+            fontFamily: "'Open Sans', sans-serif",
+          }}
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+          onChange={(e) => {
+            setInput(e.target.value);
+          }}
+        ></textarea>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        <div>{translatedText}</div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
+
+const normalTextToGoblinText = (inputText: string) => {
+  const tokens = inputText.split("");
+
+  for (let i = 0; i < tokens.length; i++) {
+    const currentCharacter = tokens[i];
+    const currentCharacterLowercase = currentCharacter.toLowerCase();
+    const mappingExistsForCurrentCharacter = Boolean(
+      CHARACTER_MAPPING[currentCharacter]
+    );
+    const mappingExistsForCurrentCharacterLowercase = Boolean(
+      CHARACTER_MAPPING[currentCharacterLowercase]
+    );
+
+    if (mappingExistsForCurrentCharacter) {
+      tokens[i] = CHARACTER_MAPPING[currentCharacter];
+    } else if (mappingExistsForCurrentCharacterLowercase) {
+      tokens[i] = CHARACTER_MAPPING[currentCharacterLowercase];
+    }
+  }
+  return (inputText = tokens.join(""));
+};
+
+const CHARACTER_MAPPING: Record<string, string> = {
+  0: "₀",
+  1: "₁",
+  2: "₂",
+  3: "₃",
+  4: "₄",
+  5: "₅",
+  6: "₆",
+  7: "₇",
+  8: "₈",
+  9: "₉",
+  a: "ₐ",
+  e: "ₑ",
+  h: "ₕ",
+  i: "ᵢ",
+  j: "ⱼ",
+  k: "ₖ",
+  l: "ₗ",
+  m: "ₘ",
+  n: "ₙ",
+  o: "ₒ",
+  p: "ₚ",
+  r: "ᵣ",
+  s: "ₛ",
+  t: "ₜ",
+  u: "ᵤ",
+  v: "ᵥ",
+  x: "ₓ",
+  A: "ₐ",
+  B: "B",
+  C: "C",
+  D: "D",
+  E: "ₑ",
+  F: "F",
+  G: "G",
+  H: "ₕ",
+  I: "ᵢ",
+  J: "ⱼ",
+  K: "ₖ",
+  L: "ₗ",
+  M: "ₘ",
+  N: "ₙ",
+  O: "ₒ",
+  P: "ₚ",
+  Q: "Q",
+  R: "ᵣ",
+  S: "ₛ",
+  T: "ₜ",
+  U: "ᵤ",
+  V: "ᵥ",
+  W: "W",
+  X: "ₓ",
+  Y: "Y",
+  Z: "Z",
+  "+": "₊",
+  "-": "₋",
+  "=": "₌",
+  "(": "₍",
+  ")": "₎",
+  y: "ᵧ",
+  b: "ᵦ",
+  q: "ᵩ",
+  z: "𝓏",
+  w: "𝓌",
+  c: "𝒸",
+  d: "𝒹",
+  f: "𝒻",
+  g: "𝓰",
+};
