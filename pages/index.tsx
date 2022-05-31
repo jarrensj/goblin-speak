@@ -187,5 +187,5 @@ const CHARACTER_MAPPING: Record<string, string> = {
   c: "𝒸",
   d: "𝒹",
   f: "𝒻",
-  g: "𝓰",
+  g: "g",
 };
