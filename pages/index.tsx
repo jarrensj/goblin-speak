@@ -15,8 +15,8 @@ const Home: NextPage = () => {
   const DESCRIPTION = normalTextToGoblinText(
     "goblintown.wtf inspired translator for hoomans to gooblins"
   );
-  const URL = "";
-  const IMAGE = "/goblin-9871.png";
+  const URL = "https://goblin-speak.vercel.app";
+  const IMAGE = `${URL}/goblin-9871.png`;
 
   return (
     <>
@@ -121,7 +121,6 @@ const normalTextToGoblinText = (inputText: string) => {
   return (inputText = tokens.join(""));
 };
 
-// TODO update mapping
 const CHARACTER_MAPPING: Record<string, string> = {
   0: "₀",
   1: "₁",
