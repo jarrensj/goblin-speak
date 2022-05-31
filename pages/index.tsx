@@ -58,6 +58,7 @@ const Home: NextPage = () => {
           }}
           name=""
           id=""
+          placeholder={normalTextToGoblinText("Enter text here")}
           cols={30}
           rows={5}
           onChange={(e) => {
