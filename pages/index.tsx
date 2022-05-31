@@ -11,10 +11,9 @@ const Home: NextPage = () => {
     return normalTextToGoblinText(input);
   }, [input]);
 
-  const TITLE = normalTextToGoblinText("Goblin Translator");
-  const DESCRIPTION = normalTextToGoblinText(
-    "goblintown.wtf inspired translator for hoomans to gooblins"
-  );
+  const TITLE = "Goblin Translator";
+  const DESCRIPTION =
+    "goblintown.wtf inspired translator for hoomans to gooblins";
   const URL = "https://goblin-speak.vercel.app";
   const IMAGE = `${URL}/goblin-9871.png`;
 
